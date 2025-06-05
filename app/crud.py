@@ -80,14 +80,12 @@ def create_checklist_responses(db: Session, data: schemas.ChecklistResponseBatch
             sensor_id=item.sensor_id,
             item_id=item.item_id,
             user_id=item.user_id,
-            is_checked=item.is_checked
+            is_checked=item.is_checked,
             is_before=item.is_before
         )
         db.add(response)
     db.commit()
     return {"message": "Checklist enregistrée avec succès"}
-
-
 
 def create_user(db: Session, user_data: schemas.UserCreate, role: str):
     hashed_password = auth.get_password_hash(user_data.password)
