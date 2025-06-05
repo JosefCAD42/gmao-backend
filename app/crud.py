@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app import models, schemas, auth
+from typing import Optional
 
 def create_sensor(db: Session, sensor: schemas.SensorCreate, user_id: str):
     db_sensor = models.Sensor(**sensor.dict(), created_by=user_id)
