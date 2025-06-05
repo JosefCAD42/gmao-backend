@@ -6,6 +6,7 @@ from typing import List
 from fastapi import Query
 from datetime import date
 from app.exports import generate_sensor_history_excel
+from typing import Optional
 
 router = APIRouter(prefix="/sensors", tags=["sensors"])
 
