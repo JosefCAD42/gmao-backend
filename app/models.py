@@ -106,18 +106,3 @@ class SensorMovement(Base):
     commentaire = Column(Text, nullable=True)
 
     sensor = relationship("Sensor", back_populates="movements")
-
-class ChecklistResponse(Base):
-    __tablename__ = "checklist_responses"
-
-    id = Column(String, primary_key=True, default=generate_uuid)
-    sensor_id = Column(String, ForeignKey("sensors.id"))
-    user_id = Column(String, ForeignKey("users.id"))
-    item_id = Column(String, ForeignKey("checklist_items.id"))
-    is_checked = Column(Boolean, default=False)
-    is_before = Column(Boolean, default=True)  # 🔹 Ajouté ici
-    date_checked = Column(DateTime, default=datetime.utcnow)
-
-    sensor = relationship("Sensor", back_populates="checklist_responses")
-    user = relationship("User", back_populates="checklist_responses")
-    item = relationship("ChecklistItem")
