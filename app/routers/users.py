@@ -42,7 +42,8 @@ TECHNICIAN_KEY = os.getenv("TECHNICIAN_KEY")
 
 @router.post("/register", response_model=schemas.UserRead)
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    # Vérifier la clé
+    print("🔐 Tentative d'inscription :", user)
+
     if user.registration_key == MANAGER_KEY:
         role = "manager"
     elif user.registration_key == TECHNICIAN_KEY:
