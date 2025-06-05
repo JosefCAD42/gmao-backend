@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app import models, schemas, auth
+
 def create_sensor(db: Session, sensor: schemas.SensorCreate, user_id: str):
     db_sensor = models.Sensor(**sensor.dict(), created_by=user_id)
     db.add(db_sensor)
@@ -80,18 +81,11 @@ def create_checklist_responses(db: Session, data: schemas.ChecklistResponseBatch
             item_id=item.item_id,
             user_id=item.user_id,
             is_checked=item.is_checked
+            is_before=item.is_before
         )
         db.add(response)
     db.commit()
     return {"message": "Checklist enregistrée avec succès"}
-
-response = models.ChecklistResponse(
-    sensor_id=item.sensor_id,
-    item_id=item.item_id,
-    user_id=item.user_id,
-    is_checked=item.is_checked,
-    is_before=item.is_before  # 🔹 pris en compte ici
-)
 
 
 
