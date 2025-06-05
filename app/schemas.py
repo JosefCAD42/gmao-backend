@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 from enum import Enum
 from datetime import datetime
+from typing import Dict, List
 
 # 🔹 ENUMS
 
